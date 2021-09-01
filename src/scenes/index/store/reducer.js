@@ -6,7 +6,7 @@ const defaultState = fromJS({
         total: 0
     },
     local_data_array: {
-        common_array: []
+        mock_array: []
     }
 })
 

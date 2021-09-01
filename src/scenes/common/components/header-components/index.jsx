@@ -12,19 +12,21 @@ import './index.less';
 class Admin extends Component {
 
     render() {
-        const { common_info_data } = this.props
-        const common_info_dataJS = isImmutable(common_info_data) ? common_info_data.toJS() : common_info_data
-        const { total }=common_info_dataJS
+        const { local_data, saveLoaclData } = this.props
+        const local_dataJS = isImmutable(local_data) ? local_data.toJS() : local_data
+        const { total } = local_dataJS
         return (
             <div className="header">
-                {total}
+                <button onClick={() => { saveLoaclData({ total: total - 1 }) }}>
+                     - 
+                </button>
             </div>
         );
     }
 }
 const mapStateToProps = (state) => {
     return {
-        common_info_data: state.getIn(['common', 'common_info_data'])
+        local_data: state.getIn(['common', 'local_data'])
     }
 }
 
@@ -32,6 +34,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getCommonInfo(value) {
             dispatch(actionCreators.getCommonInfo(value))
+        },
+        saveLoaclData(value) {
+            dispatch(actionCreators.saveLoaclData(value))
         }
     }
 }

@@ -2,23 +2,17 @@ import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import { isImmutable } from "immutable";
 import { actionCreators } from './store'
-import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 
-// 公共组件
-import Header from './components/header-components'
-import Footer from './components/footer-components'
-
-// 页面组件
-import Dash from '../index'
+    
 
 import './index.less';
 
 
-class Admin extends Component {
+class Dash extends Component {
     constructor(props) {
         super(props);
-        props.getCommonInfo()
+        
     }
 
     render() {
@@ -27,13 +21,7 @@ class Admin extends Component {
         const { total } = local_dataJS
         return (
             <Fragment>
-                <Header />
-                <Switch>
-                    <Redirect from='/' exact to='/dash' />
-                    <Route path='/dash' component={Dash} />
-
-                </Switch>
-                <Footer />
+                {total}
             </Fragment>
 
         );
@@ -53,7 +41,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Admin));
-
-
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Dash));
 
